@@ -26,27 +26,27 @@ function handleAddPlaceClick() {
     <Header/>
     <Main onEditProfile={handleEditProfileClick} onAddPlace={handleAddPlaceClick} onEditAvatar={handleEditAvatarClick}/>
     <Footer/>
-    <PopupWithForm title="Редактировать профиль" id="profile" name="profile-editor" children={<>
-    <input type="text" minlength="2" maxlength="40" className="popup__input popup__input_name" placeholder="Имя" id="name" required/>
+    <PopupWithForm title="Редактировать профиль1" id="profile" name="profile-editor" children={<>
+            <input type="text" minlength="2" maxlength="40" className="popup__input popup__input_name" placeholder="Имя" id="name" required/>
             <span className="popup__input-error" id="name-error"></span>
-           <input type="text" minlength="2" maxlength="200" className="popup__input popup__input_job" placeholder="Профессия" id="about" required/>
+            <input type="text" minlength="2" maxlength="200" className="popup__input popup__input_job" placeholder="Профессия" id="about" required/>
             <span className="popup__input-error" id="about-error"></span>
             <button type="submit" className="popup__submit">Сохранить</button>
             </>}/>
     <PopupWithForm title="Новое место" id="newplace" name="place-editor" children={<>
       <input name="name" type="text" minlength="2" maxlength="30" className="popup__input popup__input_place" placeholder="Название" id="place" required/>
-             <span className="popup__input-error" id="place-error"></span>
-             <input name="link" type="url" className="popup__input popup__input_url" placeholder="Ссылка на картинку" id="url" required/>
-             <span className="popup__input-error" id="url-error"></span>
-             <button type="submit" className="popup__submit">Создать</button>
+      <span className="popup__input-error" id="place-error"></span>
+      <input name="link" type="url" className="popup__input popup__input_url" placeholder="Ссылка на картинку" id="url" required/>
+      <span className="popup__input-error" id="url-error"></span>
+      <button type="submit" className="popup__submit">Создать</button>
     </>}/>
     <PopupWithForm title="Вы уверены?" id="delete" name="place-remove" children={<>
       <button type="submit" className="popup__submit">Да</button>
     </>}/>
     <PopupWithForm title="Обновить аватар" id="avatar" name="avatar-editor" children={<>
       <input type="url" className="popup__input popup__input_url" placeholder="Ссылка на картинку" id="url-avatar" required/>
-             <span className="popup__input-error" id="url-avatar-error"></span>
-             <button type="submit" className="popup__submit">Сохранить</button>
+            <span className="popup__input-error" id="url-avatar-error"></span>
+            <button type="submit" className="popup__submit">Сохранить</button>
     </>}/>
     <ImagePopup/>
     <template className="card-template_type_default" id="cards">
