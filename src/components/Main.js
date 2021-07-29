@@ -1,5 +1,4 @@
 import {api} from '../utils/Api.js';
-import {config} from '../utils/constants.js';
 import Card from './Card';
 import React from 'react';
 
@@ -10,7 +9,7 @@ export default function Main(props) {
     const [cards,setCards] = React.useState([])
 
     React.useEffect( () => {
-        api.getUserInfo(config.urlMe, config.methodGET, config.token)
+        api.getUserInfo()
         .then((user) => {
             setUser({
             userAvatar: user.avatar,
@@ -18,13 +17,15 @@ export default function Main(props) {
             userDescription: user.about
             })
         })
+        .catch((err) => {console.log(err)})
     }, [])
 
     React.useEffect(() => {
-        api.getInitialCards(config.urlCards, config.methodGET, config.token)
+        api.getInitialCards()
         .then((cards) => {
             setCards(cards);
         })
+        .catch((err) => {console.log(err)})
     }, [])
 
     return(
@@ -39,8 +40,8 @@ export default function Main(props) {
             <button type="button" className="profile__place-edit" onClick={props.onAddPlace}></button>
         </section>
         <section className="places">
-        {cards.map( (item, i)  => { 
-                    return (<Card  key={i} card={item} onCardClick={props.onCardClick}/>)
+        {cards.map( (item)  => { 
+                    return (<Card  key={item._id} card={item} onCardClick={props.onCardClick}/>)
         })}
         </section>
     </main>

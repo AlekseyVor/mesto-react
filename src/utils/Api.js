@@ -29,14 +29,14 @@ class Api {
       return Promise.reject(`Ошибка ${res.status}`)
     }
 
-    getUserInfo = (url, type, token) => {
-      return this._search(url, type, token)
+    getUserInfo = () => {
+      return this._search(this._config.urlMe, this._config.methodGET, this._config.token)
       .then(this._checkResponse)
       
   }
 
-    getInitialCards = (url, type, token) => {
-      return this._search(url, type, token)
+    getInitialCards = () => {
+      return this._search(this._config.urlCards, this._config.methodGET, this._config.token)
       .then(this._checkResponse);
   }
 
