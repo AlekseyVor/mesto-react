@@ -62,7 +62,6 @@ function handleCardClick(card) {
   }
 
   function handleUpdateAvatar(data) {
-    console.log(data);
     api.patchUserAvatar(data.avatar)
     .then((res) => { 
         setCurrentUser(res);
