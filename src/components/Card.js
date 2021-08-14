@@ -20,7 +20,6 @@ export default function Card(props) {
         }
     
         return (
-            <>
             <div className="place">
                     <img src={props.card.link} alt={props.card.name} className="place__image" onClick={handleClick}/>
                     <div className="place__header">
@@ -32,6 +31,5 @@ export default function Card(props) {
                     </div>
                     <button type="button" className={cardDeleteButtonClassName} onClick={handleDeleteClick}></button>
             </div>
-            </>
         )
 }
