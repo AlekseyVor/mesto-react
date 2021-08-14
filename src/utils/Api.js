@@ -40,11 +40,11 @@ class Api {
       .then(this._checkResponse);
   }
 
-    patchUserInfo = (url, type, token, userInfo) => {
-    return fetch(`${this._option.baseUrl}${url}`,{
-      method: `${type}`,
+    patchUserInfo = (userInfo) => {
+    return fetch(`${this._option.baseUrl}${this._config.urlMe}`,{
+      method: `${this._config.methodPATCH}`,
       headers: {
-        authorization: `${token}`,
+        authorization: `${this._config.token}`,
         'Content-Type': 'application/json'
       },
       body:  JSON.stringify({
@@ -55,36 +55,42 @@ class Api {
     .then(this._checkResponse);
 }
 
-  postNewCard = (url, type, token, card) => {
-    return fetch(`${this._option.baseUrl}${url}`,{
-      method: `${type}`,
+  postNewCard = (card) => {
+    return fetch(`${this._option.baseUrl}${this._config.urlCards}`,{
+      method: `${this._config.methodPOST}`,
       headers: {
-        authorization: `${token}`,
+        authorization: `${this._config.token}`,
         'Content-Type': 'application/json'
       },
       body:  JSON.stringify({
-        name: `${card.place}`,
-        link: `${card.url}`
+        name: `${card.name}`,
+        link: `${card.link}`
       })
     })
     .then(this._checkResponse);
 }
 
-  deleteCard = (url, type, token, cardid) => {
-    return this._searchCardId(url, type, token, cardid)
+  deleteCard = (cardid) => {
+    return this._searchCardId(this._config.urlCards, this._config.methodDELETE, this._config.token, cardid)
     .then(this._checkResponse);
   }
 
-  updateLike = (url, type, token, cardid) => {
-    return this._searchCardId(url, type, token, cardid)
-    .then(this._checkResponse);
+  updateLike = (cardid, status) => {
+    if (status) {
+      return this._searchCardId(this._config.urlLikes, this._config.methodPUT, this._config.token, cardid)
+      .then(this._checkResponse);
+    } else { 
+      return this._searchCardId(this._config.urlLikes, this._config.methodDELETE, this._config.token, cardid)
+      .then(this._checkResponse);
+    }
+    
   }
 
-  patchUserAvatar = (url, type, token, avatar) => {
-    return fetch(`${this._option.baseUrl}${url}`,{
-      method: `${type}`,
+  patchUserAvatar = (avatar) => {
+    return fetch(`${this._option.baseUrl}${this._config.urlAvatar}`,{
+      method: `${this._config.methodPATCH}`,
       headers: {
-        authorization: `${token}`,
+        authorization: `${this._config.token}`,
         'Content-Type': 'application/json'
       },
       body:  JSON.stringify({
